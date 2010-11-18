@@ -18,7 +18,4 @@ public class PiccoloRecordWriter<KEY, VALUE> extends RecordWriter<KEY, VALUE> {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-
 }

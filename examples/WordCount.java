@@ -33,22 +33,6 @@ import edu.nyu.cs.piccolo.kernel.PiccoloTable;
 import edu.nyu.cs.piccolo.kernel.PiccoloTable.TablePair;
 
 public class WordCount {
-
-	public static class LinkGraphInputFormat extends FileInputFormat<Text, Text> {
-
-		@Override
-		public RecordReader<Text, Text> createRecordReader(InputSplit split, TaskAttemptContext context) throws IOException, InterruptedException {
-			RecordReader<Text, Text> rr = new LinkGraphRecordReader();
-			rr.initialize(split, context);
-			return rr;
-		}
-
-		@Override
-		protected boolean isSplitable(JobContext context, Path file) {
-			CompressionCodec codec = new CompressionCodecFactory(context.getConfiguration()).getCodec(file);
-			return codec == null;
-		}
-	}
 	
 	public static class WCKernel extends PiccoloMapper<Text, Text, Text, IntWritable> {
 
@@ -97,12 +81,9 @@ public class WordCount {
 
 		Job job = new Job(conf, "piccolo word count");
 		job.setJarByClass(WordCount.class);
-		job.setInputFormatClass(LinkGraphInputFormat.class);
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(IntWritable.class);
-
 		job.setMapperClass(WCKernel.class);
-
 		//job.setPartitionerClass(SortedUrlHashPartitioner.class);
 		FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
 		FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
