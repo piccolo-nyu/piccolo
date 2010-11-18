@@ -41,7 +41,7 @@ public abstract class PiccoloMapper<KEYIN, VALUEIN, KEYOUT, VALUEOUT> extends Ma
 	
 	/**
 	 * Piccolo Mapper does not write out anything for Hadoop processing
-	 * instead kernel function is used 
+	 * instead kernelFunction is used 
 	 */
 	@SuppressWarnings("unchecked")
 	protected void map(KEYIN key, VALUEIN value, Context context) throws IOException, InterruptedException {
