@@ -41,7 +41,7 @@ public class WordCount {
 			
 			Kernel[] retk = new Kernel[1];
 			
-			Kernel<Text, Text, Text, IntWritable> MRKernel = new Kernel<Text, Text, Text, IntWritable>() {
+			Kernel<Text, Text, Text, IntWritable> WCKernel = new Kernel<Text, Text, Text, IntWritable>() {
 
 				@Override
 				public TablePair<Text, IntWritable> kernelfunction(Text key, Text value) {
@@ -64,7 +64,7 @@ public class WordCount {
 				}
 			};
 			
-			retk[0] = MRKernel;  
+			retk[0] = WCKernel;  
 			return retk;
 		
 		}

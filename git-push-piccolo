@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'copy here'
+echo copy here
 cp -r /home/yasemin/eclipse-workspace/Hadoop21/piccolo/edu/nyu/cs/piccolo/* /home/yasemin/git-repo/piccolo/
 echo 'git commit -m' $1
 git commit -m $1
