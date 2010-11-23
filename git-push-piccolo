@@ -1,4 +1,5 @@
 #!/bin/bash
+if [ -n $1 ]; then
 echo copy here
 cp -r /home/yasemin/eclipse-workspace/Hadoop21/piccolo/edu/nyu/cs/piccolo/* /home/yasemin/git-repo/piccolo/
 git add /home/yasemin/git-repo/piccolo/*
@@ -6,4 +7,6 @@ echo 'git commit -m' $1
 git commit -m $1
 echo git push origin master
 git push origin master
-
+else
+echo "enter commit comment"
+fi
