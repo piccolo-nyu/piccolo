@@ -4,6 +4,6 @@ cp -r /home/yasemin/eclipse-workspace/Hadoop21/piccolo/edu/nyu/cs/piccolo/* /hom
 git add /home/yasemin/git-repo/piccolo/*
 echo 'git commit -m' $1
 git commit -m $1
-echo git puch origin master
+echo git push origin master
 git push origin master
 

@@ -1,7 +1,11 @@
 package edu.nyu.cs.piccolo.test;
 
+import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.Map.Entry;
+
+import org.apache.hadoop.io.Text;
 
 import edu.nyu.cs.piccolo.kernel.PiccoloTable;
 
@@ -19,6 +23,12 @@ public class tabletest {
 				return val1;
 			//return val1+val2;
 		}
+
+		@Override
+		public String tablePairToString(edu.nyu.cs.piccolo.kernel.PiccoloTable.TablePair<String, Integer> pair) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 		
 	}
 
@@ -34,13 +44,17 @@ public class tabletest {
 		tabl.put("b", 29);
 		System.out.println("b" + tabl.get("b"));
 		
-		Entry<String, Integer>[] x = tabl.getIterator();
-		System.out.println("xsize" + x.length);
-		Entry<String, Integer> entrytidel = x[1]; 
-		
-		System.out.println("entrytidel " + entrytidel.toString());
-		
-		System.out.println("a" + tabl.get("a"));
-		
+		Hashtable<Text, Integer> tbl = new Hashtable<Text, Integer>();
+		tbl.put(new Text("aa"), 1);
+		tbl.put(new Text("aa"), 1);
+		tbl.put(new Text("aa"), 4);
+		tbl.put(new Text("bb"), 9);
+		System.out.println( tbl.toString());
+		Set<Text> s = tbl.keySet();
+		Iterator<Text> itr = s.iterator(); 
+		while(itr.hasNext())
+		{
+			System.out.println(itr.next().toString());
+		}
 	}
 }

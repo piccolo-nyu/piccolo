@@ -2,8 +2,15 @@ package edu.nyu.cs.piccolo.kernel;
 
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.MapContext;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -52,9 +59,10 @@ public abstract class PiccoloMapper<KEYIN, VALUEIN, KEYOUT, VALUEOUT> extends Ma
 	 * Called once at the end of the task.
 	 */
 	protected void cleanup(Context context) throws IOException, InterruptedException {
-		// results of the computation can be written out here 
+		// results of the computation can be written out here
+		FileSystem hdfs = FileSystem.get(context.getConfiguration());
 		for (int i = 0; i < kernels.length; i++) {
-			System.out.println(kernels[i].toString() + "\n");
+			kernels[i].writeOutKernelTable(hdfs, new Path(kernels[i].getName() + Math.random()*10000));
 		}
 	}
 
@@ -76,9 +84,10 @@ public abstract class PiccoloMapper<KEYIN, VALUEIN, KEYOUT, VALUEOUT> extends Ma
 				TablePair pair = kernels[i].kernelfunction(context.getCurrentKey(), context.getCurrentValue());
 				//if pair.key belong to partition in this worker
 				// kernels[i].kernelTable().partitionFunction(pair.getValue(), pair.getValue(), context.NUM_NODES) == this node
-					kernels[i].table.put(pair.getKey(), pair.getValue());
+					kernels[i].getTable().put(pair.getKey(), pair.getValue());
 				// else
 					//send to corresponding worker
+				//kernels[i].getTable().put(new Text("yasemin"), new IntWritable(1));
 			}
 		}
 		cleanup(context);
