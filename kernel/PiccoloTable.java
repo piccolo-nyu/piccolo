@@ -21,7 +21,7 @@ public abstract class PiccoloTable<KEY, VALUE> {
 		return (key.hashCode() & Integer.MAX_VALUE) % numOfPartitions;
 	}
 	
-	public synchronized void put(KEY key, VALUE val)
+	protected synchronized void put(KEY key, VALUE val)
 	{
 		if (table.containsKey(key))
 			table.put(key, accumulator(table.get(key), val));
@@ -33,7 +33,7 @@ public abstract class PiccoloTable<KEY, VALUE> {
 		return table.get(key);
 	}
 	
-	public ArrayList<TablePair<KEY, VALUE>> getIterator() {
+	/*public ArrayList<TablePair<KEY, VALUE>> getIterator() {
 		ArrayList<TablePair<KEY, VALUE>> arrl = new ArrayList<TablePair<KEY,VALUE>>();
 		for (Iterator iterator = table.keySet().iterator(); iterator.hasNext();) {
 			KEY k = (KEY) iterator.next();
@@ -44,16 +44,16 @@ public abstract class PiccoloTable<KEY, VALUE> {
 	
 	public Set<KEY> getKeySet(){
 		return table.keySet();
-	}
+	}*/
 	
-	public Set<Entry<KEY, VALUE>> getEntrySet(){
+	protected Set<Entry<KEY, VALUE>> getEntrySet(){
 		return table.entrySet();
 	}
 	
 	public int getSize(){
 		return table.size();
 	}
-	public void destroy(){
+	private void destroy(){
 		table = null;
 	}
 	

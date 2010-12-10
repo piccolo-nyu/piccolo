@@ -35,7 +35,7 @@ public class tabletest {
 	public static void main(String[] args) {
 		MyTable tabl = new MyTable();
 		
-		tabl.put("a", 4);
+		/*tabl.put("a", 4);
 		System.out.println("a" + tabl.get("a"));
 		tabl.put("a", 2);
 		System.out.println("a" + tabl.get("a"));
@@ -43,7 +43,7 @@ public class tabletest {
 		System.out.println("a" + tabl.get("a"));
 		tabl.put("b", 29);
 		System.out.println("b" + tabl.get("b"));
-		
+		*/
 		Hashtable<Text, Integer> tbl = new Hashtable<Text, Integer>();
 		tbl.put(new Text("aa"), 1);
 		tbl.put(new Text("aa"), 1);
