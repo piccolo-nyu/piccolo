@@ -21,12 +21,17 @@ public interface PiccoloProtocol extends VersionedProtocol {
 	 * 1: initial version.
 	 */
 	public static final long versionID = 1L;
-
+	
 	/**
 	 * Add one entry to one table
 	 * @return 
 	 */
-	public void putInTable(Text tableName, Text key, IntWritable value) throws IOException;
+	public void putInTable(Text tableName, Writable key, Writable value) throws IOException;
+	public void putInTable(Text tableName, Writable[] key, Writable[] value) throws IOException;
 	
-	void writeToLocalFileSystem(String filename, String dir);
+	public void initialize();
+	
+	void writeToLocalFileSystem(String dir);
+	
+	void dummyCall(Text t);
 }

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 
 import edu.nyu.cs.piccolo.kernel.PiccoloTable;
@@ -12,12 +13,12 @@ import edu.nyu.cs.piccolo.kernel.PiccoloTable;
 
 public class tabletest {
 	
-	public static class MyTable extends PiccoloTable<String, Integer>
+	public static class MyTable extends PiccoloTable<Text, IntWritable>
 	{
 
 		@Override
-		public Integer accumulator(Integer val1, Integer val2) {
-			if (val2>val1)
+		public IntWritable accumulator(IntWritable val1, IntWritable val2) {
+			if (val2.get()>val1.get())
 				return val2;
 			else 
 				return val1;
@@ -25,7 +26,7 @@ public class tabletest {
 		}
 
 		@Override
-		public String tablePairToString(edu.nyu.cs.piccolo.kernel.PiccoloTable.TablePair<String, Integer> pair) {
+		public String tablePairToString(TablePair<Text, IntWritable> pair) {
 			// TODO Auto-generated method stub
 			return null;
 		}

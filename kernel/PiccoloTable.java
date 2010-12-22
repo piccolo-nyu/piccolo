@@ -1,19 +1,28 @@
 package edu.nyu.cs.piccolo.kernel;
 
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Map.Entry;
 
-public abstract class PiccoloTable<KEY, VALUE> {
+import org.apache.hadoop.io.Writable;
+
+public abstract class PiccoloTable<KEY extends Writable, VALUE extends Writable> {
 
 	
-	private Hashtable<KEY, VALUE> table= new Hashtable<KEY, VALUE>();
+	private Hashtable<KEY, VALUE> table;
+	
+	public PiccoloTable(){
+		table= new Hashtable<KEY, VALUE>();
+	}
 	
 	public abstract VALUE accumulator(VALUE currentVal, VALUE newVal);
 	public abstract String tablePairToString(TablePair<KEY, VALUE> pair);
-		
+	
 	//Defaults partitioner = hashPartitioner
 	//returns worker id
 	//params: key
@@ -57,10 +66,10 @@ public abstract class PiccoloTable<KEY, VALUE> {
 		table = null;
 	}
 	
-	public static class TablePair<KEY, VALUE>
+	public static class TablePair<KEY extends Writable, VALUE extends Writable>
 	{
-		KEY key; 
-		VALUE value; 
+		private KEY key; 
+		private VALUE value; 
 		
 		public TablePair(KEY k, VALUE v){
 			this.key = k;
@@ -73,6 +82,7 @@ public abstract class PiccoloTable<KEY, VALUE> {
 		public VALUE getValue() {
 			return value;
 		}
+
 		
 	}
 }
