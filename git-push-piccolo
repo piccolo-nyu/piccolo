@@ -6,7 +6,7 @@ git add /home/yasemin/git-repo/piccolo/*
 echo 'git commit -m' $1
 git commit -m $1
 echo git push origin master
-#git push origin master
+git push origin master --force
 else
 echo "enter commit comment"
 fi
