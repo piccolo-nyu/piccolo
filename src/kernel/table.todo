@@ -1,0 +1,2 @@
+- separate partition function for each table 
+- table grouping / function to set the same partition function for all tables
