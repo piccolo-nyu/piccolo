@@ -121,7 +121,6 @@ public class PiccoloWorker implements PiccoloProtocol, PiccoloConstants {
 
 	@Override
 	public void putInTable(Text tableName, Writable[] key, Writable[] value) throws IOException {
-		LOG.debug("put <k,v>[] into table");
 		if (key.length != value.length)
 			LOG.error("key and value array length does not match!");
 		else
