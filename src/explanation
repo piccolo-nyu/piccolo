@@ -1,4 +1,0 @@
-User needs to define two functions:
-1. PiccoloMapper has KernelFunctionDefinition and needs to be implemented in the Mapper (this case under WordCount)
-2. PiccoloWorker needs to know its tables. I hard coded it for now under PiccoloWorker (setupTables)
-Also, PiccoloWorket has to be running before the job submission. (bin/start-piccolo.sh)
