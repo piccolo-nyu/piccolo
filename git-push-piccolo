@@ -2,7 +2,6 @@
 if [ -n "$1" ]; then
 echo copy here
 cp -r /home/yasemin/eclipse-workspace/Hadoop21/piccolo /home/yasemin/git-repo/piccolo/
-cp /home/yasemin/eclipse-workspace/Hadoop21/piccolo/ex* /home/yasemin/git-repo/piccolo/
 cp -r /home/yasemin/eclipse-workspace/Hadoop21/piccolo-bin /home/yasemin/git-repo/piccolo/
 git add /home/yasemin/git-repo/piccolo/*
 echo 'git commit -m' $1
