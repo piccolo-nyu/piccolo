@@ -234,13 +234,10 @@ public class PiccoloWorker implements PiccoloProtocol, PiccoloConstants {
 		{
 			stopIPCServer();
 		}
-		
 		else {
 			System.err.println("Missing argument for PiccoloWorker\nusage: PiccoloWorker [ start|stop ]");
 		}
 	}
-
-
 
 	public void dummyCall(Text t) {
 		
