@@ -10,4 +10,5 @@ echo git push origin master
 git push origin master --force
 else
 echo "enter commit comment"
-fi
+fi 
+
